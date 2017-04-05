@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+class Post(models.Model):
+    """Represents a redacted post"""
+    title = models.CharField(max_length=80)
+    content = models.TextField()
+    date_pub = models.DateTimeField()
