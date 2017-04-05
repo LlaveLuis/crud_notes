@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-
 from django.conf.urls import include, url
-from django.contrib import admin
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'notes.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url(r'^posts/list', 'crud.views.posts', name='list_posts'),
+    url(r'^posts/add/', 'crud.views.add_post', name='add_post'),
+    url(r'^posts/(?P<postid>\d+)/', 'crud.views.update_post', name='update_post'),
+    url(r'^posts/(?P<postid>\d+)/delete/', 'crud.views.delete_post',
+        name='delete_post'),
 ]
