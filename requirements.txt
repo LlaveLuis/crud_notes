@@ -1,0 +1,14 @@
+Default in environment:
+
+appdirs (1.4.3)
+packaging (16.8)
+pip (9.0.1)
+pyparsing (2.2.0)
+setuptools (34.3.3)
+six (1.10.0)
+wheel (0.30.0a0)
+
+
+Needed for this project:
+
+Django (1.8)
