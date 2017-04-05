@@ -23,6 +23,7 @@ PREREQ_APPS = [
     'django.contrib.staticfiles',
 ]   # apps needed for this project
 PROJECT_APPS = [
+    'crud',
 ]   # apps created in this project
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
