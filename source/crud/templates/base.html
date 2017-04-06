@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Crud using Django | {% block title %}Main page{% endblock %}</title>
+</head>
+<body>
+   <div id="header">
+      {% block header %}
+      <nav class="navbar navbar-inverse">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'list_posts' %}">Posts List</a>
+            <a class="navbar-brand" href="{% url 'add_post' %}">New Post</a>
+         </div>
+      </nav>
+      {% endblock %}
+   </div>
+   <div class="container">
+      {% block content %}
+      {% endblock %}
+   </div>
+   <footer class="footer">
+      {% block footer %}{% endblock %}
+   </footer>
+</body>
+</html>
