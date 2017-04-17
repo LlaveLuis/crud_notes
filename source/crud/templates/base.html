@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load staticfiles %}
 <head>
    <meta charset="UTF-8">
    <title>Crud using Django | {% block title %}Main page{% endblock %}</title>
+   <link rel="stylesheet"  href="{% static 'css/bootstrap-theme.min.css' %}">
+   <link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
    <div id="header">
@@ -22,5 +25,7 @@
    <footer class="footer">
       {% block footer %}{% endblock %}
    </footer>
+   <script src="{% static 'js/jquery.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
