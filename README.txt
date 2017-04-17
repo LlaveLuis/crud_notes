@@ -20,7 +20,7 @@ with some changes:
 Status:
 -------
 
-Deployment
+Developing
 
 
 Pending:
