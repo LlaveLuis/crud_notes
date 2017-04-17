@@ -12,8 +12,8 @@ class PostForm(ModelForm):
         model = Post
         fields = ['title', 'content', 'date_pub', ]
         widgets = {
-            'title': TextInput(attrs={'class': 'form-control', 'size': 36, }),
-            'content': Textarea(attrs={'class': 'form-control', 'rows': 4, }),
+            'title': TextInput(attrs={'class': 'form-control', }),
+            'content': Textarea(attrs={'class': 'form-control', 'rows': 6, }),
             'date_pub': SelectDateWidget(empty_label=('Choose Year',
                                                       'Choose Month',
                                                       'Choose Day')

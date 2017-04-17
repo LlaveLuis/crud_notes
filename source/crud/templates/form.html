@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet"  href="{% static 'crud/css/form.css' %}">
+{% endblock %}
+
 {% block title %}
 	Form to Posts
 {% endblock %}
