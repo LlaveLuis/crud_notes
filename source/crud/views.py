@@ -20,6 +20,8 @@ def add_post(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 "The post has been saved!")
             return HttpResponseRedirect("/posts/list/")
     return render(request, 'form.html', {'form': form})
 
