@@ -1,9 +1,10 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render_to_response
+from django.shortcuts import render, render_to_response, HttpResponseRedirect
 from django.contrib import messages
 
 from .models import Post
+from .forms import PostForm
 
 
 def posts(request):
@@ -15,7 +16,12 @@ def posts(request):
 
 
 def add_post(request):
-    return None
+    form = PostForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/posts/list/")
+    return render(request, 'form.html', {'form': form})
 
 
 def delete_post(request):
