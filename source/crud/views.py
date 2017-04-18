@@ -46,7 +46,6 @@ def update_post(request, postid):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            print('update')
             messages.add_message(request, messages.SUCCESS,
                                  "The post has been updated!")
             return HttpResponseRedirect(reverse('list_posts'))
