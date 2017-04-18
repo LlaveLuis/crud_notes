@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render, render_to_response, HttpResponseRedirect, \
-    get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 
 from .models import Post
@@ -34,7 +35,7 @@ def delete_post(request, postid):
     instance.delete()
     messages.add_message(request, messages.SUCCESS,
                          "The post with id %s has been deleted!" % postid)
-    return HttpResponseRedirect("/posts/list/")
+    return HttpResponseRedirect(reverse('list_posts'))
 
 
 def update_post(request, postid):
@@ -48,6 +49,5 @@ def update_post(request, postid):
             print('update')
             messages.add_message(request, messages.SUCCESS,
                                  "The post has been updated!")
-            return HttpResponseRedirect("/posts/list/")
-
+            return HttpResponseRedirect(reverse('list_posts'))
     return render(request, 'form.html', {'form': form})
