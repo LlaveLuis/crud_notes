@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

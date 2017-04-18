@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django.forms import ModelForm, TextInput, Textarea
 from django.forms.extras.widgets import SelectDateWidget
