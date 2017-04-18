@@ -12,20 +12,23 @@ Base:
 
 This project is based on https://www.uno-de-piera.com/crud-con-django-y-mysql
 with some changes:
-- Mysql support
+- Use of mysql-connector-python-rf package (seems more updated than 
+  default mysql connector package)
 - Css rules added
-- Change url field from model Post and it replaced with publish date field
+- Remove url field from model Post and add publish date field; thus a date 
+  widget is used
+- Static files definitions according to Django docs
+- Personalize application definition, divide it into two sections
 
 
 Status:
 -------
 
-Developing
+Deploying in pythonanywere
 
 
 Pending:
 --------
 
-- Update post functionality
-- Delete post functionality
+- Some changes to personalize this project
 - Deployment in pythonanywere
