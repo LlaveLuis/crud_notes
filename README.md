@@ -21,14 +21,14 @@ with some changes:
 - Personalize application definition, divide it into two sections
 
 
-Status:
+Deployment:
 -------
 
-Deploying in pythonanywere
+[Crud notes in pythonanywhere](http://llaveluis.pythonanywhere.com)
 
 
 Pending:
 --------
 
 - Some changes to personalize this project
-- Deployment in pythonanywere
+- Add login page
