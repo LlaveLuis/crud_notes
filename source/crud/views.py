@@ -17,6 +17,7 @@ def posts(request):
 
 
 def add_post(request):
+    """View to add a post"""
     form = PostForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -37,7 +38,8 @@ def delete_post(request, postid):
 
 
 def update_post(request, postid):
-    """View to update an existing post, by showing a form to store a post"""
+    """View to update an existing post, referenced by postid parameter.
+    Reference to the same form used in add_post view."""
     instance = get_object_or_404(Post, id=postid)
     form = PostForm(request.POST or None, instance=instance)
     if request.method == 'POST':
