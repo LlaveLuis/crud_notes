@@ -27,8 +27,13 @@ def add_post(request):
     return render(request, 'form.html', {'form': form})
 
 
-def delete_post(request):
-    return None
+def delete_post(request, postid):
+    """View to delete a post, referenced by postid parameter"""
+    instance = get_object_or_404(Post, id=postid)
+    instance.delete()
+    messages.add_message(request, messages.SUCCESS,
+                         "The post with id %s has been deleted!" % postid)
+    return HttpResponseRedirect("/posts/list/")
 
 
 def update_post(request, postid):
