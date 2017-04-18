@@ -1,0 +1,2 @@
+# Ignore changes in main static directory
+source/static/* merge=ours
