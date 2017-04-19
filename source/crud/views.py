@@ -12,7 +12,7 @@ from .forms import PostForm
 def posts(request):
     """View to list existing posts"""
     return render(request, "posts.html",
-                  {"posts": Post.objects.all(),
+                  {"posts": Post.objects.all().order_by('date_pub'),
                    "messages": messages.get_messages(request)}
                   )
 
