@@ -40,6 +40,14 @@
                <div class="checkbox">
                   <label><input type="checkbox" name="remember" id="remember">Remember me
                   </label>
+                  <div style="float: right">
+                     <a id="help_user" href="" data-toggle="tooltip"
+                        data-placement="auto bottom" title="user1: admin, admin123
+user2: john, john0123">
+                        <img src="{% static 'entry/img/info.png' %}"
+                             style="height: 24px; width: auto; ">
+                     </a>
+                  </div>
                </div>
                <div id="div_btn_login">
                   <button type="submit" class="btn btn-info">E N T R Y</button>
@@ -50,5 +58,6 @@
    </div>
    <script src="{% static 'js/jquery.min.js' %}"></script>
    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+   <script src="{% static 'entry/js/login.js' %}"></script>
 </body>
 </html>
