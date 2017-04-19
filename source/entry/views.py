@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 
 from .forms import UserForm
@@ -25,13 +26,13 @@ def access(request):
         if form.is_valid():
             res = verify_user(request.POST['username'],
                               request.POST['passwd'])
-            if len(res) > 0:
+            if res['name']:
                 request.session.create()
                 if not ('remember' in request.POST):
                     request.session.set_expiry(300)
                 request.session['id_user'] = res['id_user']
                 request.session['name'] = res['name']
-                return HttpResponseRedirect('posts/list')
+                return HttpResponseRedirect(reverse('list_posts'))
         request.session['res'] = 'Err'
         messages.error(request, 'Wrong username or password')
         return redirect('home')
