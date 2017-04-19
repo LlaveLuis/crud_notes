@@ -11,10 +11,10 @@ from .forms import PostForm
 
 def posts(request):
     """View to list existing posts"""
-    return render_to_response("posts.html",
-                              {"posts": Post.objects.all(),
-                               "messages": messages.get_messages(request)}
-                              )
+    return render(request, "posts.html",
+                  {"posts": Post.objects.all(),
+                   "messages": messages.get_messages(request)}
+                  )
 
 
 def add_post(request):

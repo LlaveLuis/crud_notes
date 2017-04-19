@@ -6,6 +6,7 @@
    <title>Crud using Django | {% block title %}Main page{% endblock %}</title>
    <link rel="stylesheet"  href="{% static 'css/bootstrap-theme.min.css' %}">
    <link rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}">
+   <link rel="stylesheet"  href="{% static 'crud/css/custom.css' %}">
    {% block styles %}
    {% endblock %}
 </head>
@@ -16,6 +17,14 @@
          <div class="navbar-header">
             <a class="navbar-brand" href="{% url 'list_posts' %}">Posts List</a>
             <a class="navbar-brand" href="{% url 'add_post' %}">New Post</a>
+         </div>
+         <div class="navbar-nav navbar-right">
+            <span class="user-name">{{ request.session.name }}</span>
+            <a class="btn" id="btnLogout" href="{% url 'logout' %}"
+               data-toggle="tooltip" data-placement="auto bottom" title="Logout">
+               <span class="glyphicon glyphicon-log-out"
+                     style="color: white; font-size: x-large"></span>
+            </a>
          </div>
       </nav>
       {% endblock %}
