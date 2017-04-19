@@ -37,3 +37,9 @@ def access(request):
         return redirect('home')
     else:
         return render(request, 'login.html')
+
+
+def leave(request):
+    """View for session close."""
+    request.session.flush()
+    return render(request, 'logout.html')
