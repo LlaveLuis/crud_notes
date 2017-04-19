@@ -4,5 +4,5 @@ from django.conf.urls import include, url
 
 urlpatterns = [
     url(r'posts', include('crud.urls')),
-    url(r'', include('crud.urls')),
+    url(r'', include('entry.urls')),
 ]

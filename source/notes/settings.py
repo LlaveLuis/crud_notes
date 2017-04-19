@@ -24,6 +24,7 @@ PREREQ_APPS = [
 ]   # apps needed for this project
 PROJECT_APPS = [
     'crud',
+    'entry',
 ]   # apps created in this project
 
 INSTALLED_APPS = PREREQ_APPS + PROJECT_APPS
