@@ -2,12 +2,12 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.hashers import check_password
 
 class User(models.Model):
     """Represents an application user."""
     username = models.CharField(max_length=32)
-    passwd = models.CharField(max_length=64)
+    passwd = models.CharField(max_length=128)
     real_name = models.CharField(max_length=128)
     last_access = models.DateTimeField(blank=True, null=True)
     creation_user = models.IntegerField()
@@ -34,7 +34,7 @@ def verify_user(username, passwd):
     res = {'id_user': None, 'name': None, }
     usr = User.objects.filter(username=username)
     if len(usr) > 0:
-        if usr[0].passwd == passwd:
+        if check_password(passwd, usr[0].passwd):
             usr[0].registry()
             res['id_user'] = usr[0].id
             res['name'] = usr[0].real_name
