@@ -18,7 +18,7 @@ def access(request):
         id_user = request.session.get('id_user')
         if id_client == id_server and id_user:
             res = registry_user(id_user)
-            if len(res) > 0:
+            if res['name']:
                 return HttpResponseRedirect('posts/list')
     # from POST, data verification is required
     if request.POST:
