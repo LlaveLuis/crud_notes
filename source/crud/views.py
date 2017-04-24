@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -11,6 +11,11 @@ from .forms import PostForm
 
 def posts(request):
     """View to list existing posts"""
+    if request.session.get('id_user') is None:
+        request.session['res'] = 'Warn'
+        messages.add_message(request, messages.WARNING,
+                             "The session has expired")
+        return HttpResponseRedirect(reverse('home'))
     return render(request, "posts.html",
                   {"posts": Post.objects.all().order_by('date_pub'),
                    "messages": messages.get_messages(request)}
@@ -19,6 +24,11 @@ def posts(request):
 
 def add_post(request):
     """View to add a post"""
+    if request.session.get('id_user') is None:
+        request.session['res'] = 'Warn'
+        messages.add_message(request, messages.WARNING,
+                             "The session has expired")
+        return HttpResponseRedirect(reverse('home'))
     form = PostForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
@@ -31,6 +41,11 @@ def add_post(request):
 
 def delete_post(request, postid):
     """View to delete a post, referenced by postid parameter"""
+    if request.session.get('id_user') is None:
+        request.session['res'] = 'Warn'
+        messages.add_message(request, messages.WARNING,
+                             "The session has expired")
+        return HttpResponseRedirect(reverse('home'))
     instance = get_object_or_404(Post, id=postid)
     instance.delete()
     messages.add_message(request, messages.SUCCESS,
@@ -41,6 +56,11 @@ def delete_post(request, postid):
 def update_post(request, postid):
     """View to update an existing post, referenced by postid parameter.
     Reference to the same form used in add_post view."""
+    if request.session.get('id_user') is None:
+        request.session['res'] = 'Warn'
+        messages.add_message(request, messages.WARNING,
+                             "The session has expired")
+        return HttpResponseRedirect(reverse('home'))
     instance = get_object_or_404(Post, id=postid)
     form = PostForm(request.POST or None, instance=instance)
     if request.method == 'POST':

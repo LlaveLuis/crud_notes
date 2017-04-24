@@ -37,7 +37,11 @@ def access(request):
         messages.error(request, 'Wrong username or password')
         return redirect('home')
     else:
-        return render(request, 'login.html')
+        msg = messages.get_messages(request)
+        c = {}
+        if msg:
+            c['messages'] = messages.get_messages(request)
+        return render(request, 'login.html', c)
 
 
 def leave(request):
