@@ -39,16 +39,18 @@ class Level(models.Model):
 def verify_user(username, passwd):
     """Data received is used to check user existence in DB; in case exists,
     registry his access.
-    :return: {id_user: id_user, name: real_name} if user exists,
-             {id_user: None, name: None } if doesn't
+    :return: {id_user: id_user, name: real_name, user_name: user_level} if user
+    exists,
+             {id_user: None, name: None, user_level: None } if doesn't
     """
-    res = {'id_user': None, 'name': None, }
+    res = {'id_user': None, 'name': None, 'user_type': None, }
     usr = User.objects.filter(username=username)
     if len(usr) > 0:
         if check_password(passwd, usr[0].passwd):
             usr[0].registry()
             res['id_user'] = usr[0].id
             res['name'] = usr[0].real_name
+            res['user_type'] = usr[0].level
     return res
 
 
