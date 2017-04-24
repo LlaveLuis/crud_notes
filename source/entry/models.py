@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.hashers import check_password
 
+
 class User(models.Model):
     """Represents an application user."""
     username = models.CharField(max_length=32)
@@ -23,6 +24,15 @@ class User(models.Model):
         self.last_access = timezone.now()
         self.save(force_update=True)
         return None
+
+
+class Level(models.Model):
+    """Represent an user's level.
+    Used to show some characteristics to specific kind of user."""
+    description = models.CharField(max_length=32)
+
+    class Meta:
+        db_table = 'level'
 
 
 def verify_user(username, passwd):
