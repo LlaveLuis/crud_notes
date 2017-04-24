@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 
-from .models import Post
+from .models import Post, User
 from .forms import PostForm
 
 
@@ -18,7 +18,8 @@ def posts(request):
         return HttpResponseRedirect(reverse('home'))
     return render(request, "posts.html",
                   {"posts": Post.objects.all().order_by('date_pub'),
-                   "messages": messages.get_messages(request)}
+                   "messages": messages.get_messages(request),
+                   "users": User.objects.all().order_by('real_name')},
                   )
 
 
@@ -70,3 +71,14 @@ def update_post(request, postid):
                                  "The post has been updated!")
             return HttpResponseRedirect(reverse('list_posts'))
     return render(request, 'form.html', {'form': form})
+
+
+def filter_posts(request):
+    """List existing posts, filtering by user"""
+    if request.is_ajax():
+        id_user = int(request.POST.get('id_user'))
+        return render(request, "posts_list.html",
+                      {"posts": Post.objects.filter(author_id=id_user).order_by(
+                          'date_pub'),
+                       })
+    return None

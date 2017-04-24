@@ -1,0 +1,17 @@
+{% if posts|length > 0 %}
+   {% for post in posts %}
+   <div class="col-md-12" style="margin-bottom: 6px">
+      <div class="col-md-8" style="border-top: dotted 0.5px grey">
+         <span class="lbl">Title:</span> {{ post.title }},
+         <span class="lbl">Date:</span> {{ post.date_pub|date:'F d, Y' }}<br>
+         <span class="lbl">Content:</span> {{ post.content }}
+      </div>
+      <div class="col-md-4">
+         <a href="{% url 'update_post' post.id %}" class="btn btn-success">Update</a>
+         <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Remove</a>
+      </div>
+   </div>
+   {% endfor %}
+{% else %}
+   <p>No hay posts</p>
+{% endif %}
