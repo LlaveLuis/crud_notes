@@ -50,7 +50,7 @@ def verify_user(username, passwd):
             usr[0].registry()
             res['id_user'] = usr[0].id
             res['name'] = usr[0].real_name
-            res['user_type'] = usr[0].level
+            res['user_type'] = usr[0].level.id
     return res
 
 

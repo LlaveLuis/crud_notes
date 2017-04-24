@@ -32,6 +32,7 @@ def access(request):
                     request.session.set_expiry(300)
                 request.session['id_user'] = res['id_user']
                 request.session['name'] = res['name']
+                request.session['user_type'] = res['user_type']
                 return HttpResponseRedirect(reverse('list_posts'))
         request.session['res'] = 'Err'
         messages.error(request, 'Wrong username or password')
