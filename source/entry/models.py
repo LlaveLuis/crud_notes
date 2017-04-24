@@ -10,6 +10,7 @@ class User(models.Model):
     username = models.CharField(max_length=32)
     passwd = models.CharField(max_length=128)
     real_name = models.CharField(max_length=128)
+    level = models.ForeignKey('Level')
     last_access = models.DateTimeField(blank=True, null=True)
     creation_user = models.IntegerField()
     modify_user = models.IntegerField(blank=True, null=True)
