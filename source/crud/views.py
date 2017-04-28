@@ -77,8 +77,13 @@ def filter_posts(request):
     """List existing posts, filtering by user"""
     if request.is_ajax():
         id_user = int(request.POST.get('id_user'))
-        return render(request, "posts_list.html",
-                      {"posts": Post.objects.filter(author_id=id_user).order_by(
-                          'date_pub'),
-                       })
+        if id_user>0:
+            return render(request, "posts_list.html",
+                          {"posts": Post.objects.filter(
+                              author_id=id_user).order_by('date_pub'),
+                           })
+        else:
+            return render(request, "posts_list.html",
+                          {"posts": Post.objects.all().order_by('date_pub'),
+                           })
     return None
