@@ -33,7 +33,10 @@ def add_post(request):
     form = PostForm(request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            form.save()
+            data = form.save(commit=False)
+            data.author = User.objects.filter(id=request.session.get(
+                'id_user'))[0]
+            data.save()
             messages.add_message(request, messages.SUCCESS,
                                  "The post has been saved!")
             return HttpResponseRedirect("/posts/list/")
