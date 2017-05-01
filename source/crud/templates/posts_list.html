@@ -2,7 +2,8 @@
    {% for post in posts %}
    <div class="col-md-12" style="margin-bottom: 6px">
       <div class="col-md-8" style="border-top: dotted 0.5px grey">
-         <span class="lbl">Title:</span> {{ post.title }},
+         <span class="lbl">Title:</span> {{ post.title }}<br>
+         <span class="lbl">Author:</span> {{ post.author.real_name }}
          <span class="lbl">Date:</span> {{ post.date_pub|date:'F d, Y' }}<br>
          <span class="lbl">Content:</span> {{ post.content }}
       </div>
