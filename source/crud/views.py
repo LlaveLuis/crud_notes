@@ -11,16 +11,26 @@ from .forms import PostForm
 
 def posts(request):
     """View to list existing posts"""
-    if request.session.get('id_user') is None:
+    id_user = request.session.get('id_user')
+    if id_user is None:
         request.session['res'] = 'Warn'
         messages.add_message(request, messages.WARNING,
                              "The session has expired")
         return HttpResponseRedirect(reverse('home'))
-    return render(request, "posts.html",
-                  {"posts": Post.objects.all().order_by('date_pub'),
-                   "messages": messages.get_messages(request),
-                   "users": User.objects.all().order_by('real_name')},
-                  )
+    if request.session['user_type'] == 1:
+        return render(request, "posts.html",
+                      {"posts": Post.objects.filter(
+                          author_id=id_user).order_by('date_pub'),
+                       "messages": messages.get_messages(request),
+                       },
+                      )
+    else:
+        return render(request, "posts.html",
+                      {"posts": Post.objects.all().order_by('date_pub'),
+                       "messages": messages.get_messages(request),
+                       "users": User.objects.all().order_by('real_name')
+                       },
+                      )
 
 
 def add_post(request):
