@@ -1,1 +1,2 @@
 span.lbl { font-weight: bold; }
+#posts_list { height: 400px; overflow-y: auto; }
