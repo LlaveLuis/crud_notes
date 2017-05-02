@@ -41,6 +41,8 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
 ]
 
+SESSION_SAVE_EVERY_REQUEST = True
+
 ROOT_URLCONF = 'notes.urls'
 
 TEMPLATES = [
