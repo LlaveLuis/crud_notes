@@ -55,4 +55,8 @@ $(function()
    }
    $('#sel_user').on('change', filter_posts);
    $("#mymod").on('show.bs.modal', get_data_post);
+   $("a#btn_remove").on('click', function(ev){
+      if (!confirm('Are you sure to delete this post?'))
+         ev.preventDefault();
+   });
 });

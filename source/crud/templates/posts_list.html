@@ -10,7 +10,8 @@
       <div class="col-md-4">
          <a id="btn_mod_{{ post.id }}" href="#mymod" class="btn btn-success"
             data-toggle="modal">Update</a>
-         <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Remove
+         <a id="btn_remove" href="{% url 'delete_post' post.id %}"
+            class="btn btn-danger">Remove
          </a>
       </div>
    </div>
