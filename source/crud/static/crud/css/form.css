@@ -1,2 +1,3 @@
 div.panel-body { width: 50% } 
-input#btn-submit { width: 50%; margin-left: 25%; }
+input#btn-submit { width: 32%; margin-left: 15%; }
+a#a-cancel { width: 32%; margin-left: 6%; }
