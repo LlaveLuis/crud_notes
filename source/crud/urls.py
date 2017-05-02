@@ -7,6 +7,8 @@ urlpatterns = [
     url(r'^/list', 'crud.views.posts', name='list_posts'),
     url(r'^/add/', 'crud.views.add_post', name='add_post'),
     url(r'^/get/', 'crud.views.get_post', name='get_post'),
+    url(r'^/(?P<postid>\d+)/update/', 'crud.views.update_post',
+        name='update_post'),
     url(r'^/(?P<postid>\d+)/delete/', 'crud.views.delete_post',
         name='delete_post'),
 ]

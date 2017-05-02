@@ -70,21 +70,6 @@ def delete_post(request, postid):
     return HttpResponseRedirect(reverse('list_posts'))
 
 
-def get_post(request):
-    """View to data post, and send to client in order to update it."""
-    if request.is_ajax():
-        id_post = int(request.POST.get('id_post'))
-        post = Post.objects.filter(id=id_post)
-        if len(post) > 0:
-            return JsonResponse({'id': post[0].id,
-                                 'title': post[0].title,
-                                 'content': post[0].content,
-                                 'date_pub': post[0].date_pub,
-                                 }
-                                )
-    return {success: 'fail'}
-
-
 def filter_posts(request):
     """List existing posts, filtering by user"""
     if request.is_ajax():
@@ -99,3 +84,34 @@ def filter_posts(request):
                           {"posts": Post.objects.all().order_by('date_pub'),
                            })
     return None
+
+
+def get_post(request):
+    """View to data post, and send to client in order to update it."""
+    if request.is_ajax():
+        id_post = int(request.POST.get('id_post'))
+        post = Post.objects.filter(id=id_post)
+        if len(post) > 0:
+            return JsonResponse({'title': post[0].title,
+                                 'content': post[0].content,
+                                 'date_pub': post[0].date_pub,
+                                 'url': reverse('update_post', args=[id_post]),
+                                 }
+                                )
+    return {}
+
+
+def update_post(request, postid):
+    if request.method == 'POST':
+        instance = get_object_or_404(Post, id=postid)
+        form = PostForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS,
+                                 "The post has been updated!")
+        else:
+            messages.add_message(request, messages.ERROR,
+                                 "Post doesn't update due to some "
+                                 "errors")
+            messages.add_message(request, messages.ERROR, form.errors.as_ul())
+    return HttpResponseRedirect(reverse('list_posts'))

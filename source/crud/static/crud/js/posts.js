@@ -45,6 +45,7 @@ $(function()
             ('selected', true);
             $("select#id_date_pub_day option[value='"+day+"']").prop
             ('selected', true);
+            $("form#frm_update_post").attr("action", json['url']);
          },
          error : function(xhr,errmsg,err)
          {
