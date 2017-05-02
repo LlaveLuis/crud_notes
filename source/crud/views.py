@@ -17,18 +17,21 @@ def posts(request):
         messages.add_message(request, messages.WARNING,
                              "The session has expired")
         return HttpResponseRedirect(reverse('home'))
+    form = PostForm()
     if request.session['user_type'] == 1:
         return render(request, "posts.html",
                       {"posts": Post.objects.filter(
                           author_id=id_user).order_by('date_pub'),
                        "messages": messages.get_messages(request),
+                       "form": form,
                        },
                       )
     else:
         return render(request, "posts.html",
                       {"posts": Post.objects.all().order_by('date_pub'),
                        "messages": messages.get_messages(request),
-                       "users": User.objects.all().order_by('real_name')
+                       "users": User.objects.all().order_by('real_name'),
+                       "form": form,
                        },
                       )
 
@@ -67,23 +70,19 @@ def delete_post(request, postid):
     return HttpResponseRedirect(reverse('list_posts'))
 
 
-def update_post(request, postid):
-    """View to update an existing post, referenced by postid parameter.
-    Reference to the same form used in add_post view."""
-    if request.session.get('id_user') is None:
-        request.session['res'] = 'Warn'
-        messages.add_message(request, messages.WARNING,
-                             "The session has expired")
-        return HttpResponseRedirect(reverse('home'))
-    instance = get_object_or_404(Post, id=postid)
-    form = PostForm(request.POST or None, instance=instance)
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS,
-                                 "The post has been updated!")
-            return HttpResponseRedirect(reverse('list_posts'))
-    return render(request, 'form.html', {'form': form})
+def get_post(request):
+    """View to data post, and send to client in order to update it."""
+    if request.is_ajax():
+        id_post = int(request.POST.get('id_post'))
+        post = Post.objects.filter(id=id_post)
+        if len(post) > 0:
+            return JsonResponse({'id': post[0].id,
+                                 'title': post[0].title,
+                                 'content': post[0].content,
+                                 'date_pub': post[0].date_pub,
+                                 }
+                                )
+    return {success: 'fail'}
 
 
 def filter_posts(request):

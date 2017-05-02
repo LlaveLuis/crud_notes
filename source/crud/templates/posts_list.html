@@ -8,8 +8,10 @@
          <span class="lbl">Content:</span> {{ post.content }}
       </div>
       <div class="col-md-4">
-         <a href="{% url 'update_post' post.id %}" class="btn btn-success">Update</a>
-         <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Remove</a>
+         <a id="btn_mod_{{ post.id }}" href="#mymod" class="btn btn-success"
+            data-toggle="modal">Update</a>
+         <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Remove
+         </a>
       </div>
    </div>
    {% endfor %}
