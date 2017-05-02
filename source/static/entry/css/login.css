@@ -1,0 +1,5 @@
+img#logo { height: 40px; width: auto; }
+div#div_btn_login { text-align: center; }
+button[type="submit"] { font-weight: bold; }
+.msgheader { background-color: #6666ff; }
+.msgfooter { background-color: #ffffff; text-align: center; }
