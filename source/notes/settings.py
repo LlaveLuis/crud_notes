@@ -10,9 +10,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7kio_)i2#8w@9r*l@-nq62qdy=*4th$qgz-styh4a!nb$jle_c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', ]
+ALLOWED_HOSTS = ['llaveluis.pythonanywhere.com', ]
 
 
 # Application definition
@@ -68,10 +68,10 @@ WSGI_APPLICATION = 'notes.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'notes',
-        'USER': 'adm',
+        'NAME': 'llaveluis$notes',
+        'USER': 'llaveluis',
         'PASSWORD': 'bdLuis-11',
-        'HOST': '127.0.0.1',
+        'HOST': 'llaveluis.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
